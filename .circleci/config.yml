@@ -1,16 +1,7 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1
+  welcome: circleci/welcome-orb@0.4.1
 workflows:
-  build:
+  welcome:
     jobs:
-      - cypress/install:
-          build: 'npm run build' # run a custom app build step
-      - cypress/run:
-          requires:
-            - cypress/install
-          record: true # record results on Cypress Dashboard
-          parallel: true # split all specs across machines
-          parallelism: 2 # use 4 CircleCI machines to finish quickly
-          group: 'all tests' # name this group "all tests" on the dashboard
-          start: 'npm start' # start server before running tests
+      - welcome/run
